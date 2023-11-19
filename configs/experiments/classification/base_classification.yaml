@@ -1,0 +1,54 @@
+# @package _global_
+defaults:
+  - /callbacks:  
+      - upload_config
+  - /logger:
+      - wandb
+
+dataset:
+  dataset_type: cifar10
+  batch_size: 1024
+  num_workers: 32
+  train_num: 1024
+  val_ratio: -1
+  enable_aug: false # for fast training
+  train_transform:
+    - ['RandomCrop', [32, 32], 4]
+    - ['RandomHorizontalFlip', 0.5]
+    - ['ToTensor']
+    - ['Normalize', [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]]
+  test_transform:
+    - ['ToTensor']
+    - ['Normalize', [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]]
+  fast_load: true
+
+  
+
+model:
+  model_type: mlp
+  hidden_unit_list: [64, 64]
+  loss_type: mse
+  input_dim: 3072
+  output_dim: 10
+  spatial_dim : 32
+  num_colors: 3
+  activation: tanh
+  norm: 
+  load_from: 
+
+
+
+optim:
+  optimizer_type: gd
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  scheduler_type: 
+  sharpness_schedule: 
+
+trainer:
+  gpus: [0]
+  max_epochs: 100
+
+no_test: false
+experiment_name: base_classification

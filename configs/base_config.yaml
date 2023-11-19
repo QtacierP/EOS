@@ -1,0 +1,12 @@
+user: EOS-Finder
+project_name: DATA8003-EOS
+seed: 42
+debug: false
+running_time: ${now:%Y-%m-%d-%H-%M-%S}
+num_workers: 16
+tags: 
+work_dir: ${hydra:runtime.cwd}
+hydra:
+  output_subdir: hydra
+  run:
+    dir: ../experiments/${experiment_name}

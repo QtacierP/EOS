@@ -1,0 +1,16 @@
+defaults:
+  - base_config
+  - base_trainer
+
+task: train
+
+experiment_name: ???
+hist_save_dir: ./hist/
+eigen_freq: 10
+n_eigen: 2
+nproj: 0
+iterate_freq: 10
+logger:
+  log_dir: ../experiments/${experiment_name}/
+  wandb:
+    group: train

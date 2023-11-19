@@ -1,0 +1,50 @@
+# @package _global_
+defaults:
+  - base_classification
+  - /callbacks:  
+      #- model_checkpoint
+      - upload_config
+      #- lr_monitor
+  - /logger:
+      - wandb
+  
+
+dataset:
+  root: /data/pujin/EOS/data
+  dataset_type: cifar10
+  batch_size: 5000
+  num_workers: 0
+  train_num: 5000
+  test_num: 5000
+  train_transform:
+    - ['RandomCrop', [32, 32], 4]
+    - ['RandomHorizontalFlip', 0.5]
+    - ['ToTensor', none]
+    - ['Normalize', [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]]
+  test_transform:
+    - ['ToTensor', none]
+    - ['Normalize', [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]]
+  
+
+model:
+  model_type: mlp
+  hidden_unit_list: [200, 200]
+  loss_type: mse
+  activation: tanh
+  norm: 
+
+n_eigen: 2
+nproj: 0
+iterate_freq: -1
+eigen_freq: 50
+
+trainer:
+  gpus: [5]
+  max_epochs: 5000
+
+optim:
+  lr: 0.005
+  sharpness_schedule: 
+
+
+experiment_name: 0.005_200_2_mlp_cifar10_5k_gd_mse_tanh_wo_aug

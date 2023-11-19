@@ -1,0 +1,3 @@
+upload_config:
+    _target_: utils.UploadConfigToWandbAsArtifact
+    config_dir: hydra

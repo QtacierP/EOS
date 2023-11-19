@@ -1,0 +1,9 @@
+trainer:
+  gpus: [0]
+  #strategy: ddp
+  precision: 32
+  fast_dev_run: False
+  max_epochs: ${max_epochs}
+  auto_lr_find: false
+  sync_batchnorm: false
+  enable_progress_bar: false

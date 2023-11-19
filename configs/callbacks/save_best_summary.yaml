@@ -1,0 +1,3 @@
+save_best_summary:
+    _target_: utils.SaveBestCheckpointPathToWandbSummary
+    prefix:
